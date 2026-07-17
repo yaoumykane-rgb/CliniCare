@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FiActivity, FiLogOut } from "react-icons/fi";
+import { FiActivity, FiGrid, FiLogOut } from "react-icons/fi";
 import { ROLE_LABELS, type User } from "../types/roles";
 
 export default function Home() {
@@ -64,6 +64,15 @@ export default function Home() {
           Vous êtes connecté à CliniCare
           {roleLabel ? ` en tant que ${roleLabel.toLowerCase()}` : ""}.
         </p>
+
+        <button
+          type="button"
+          onClick={() => navigate("/dashboard")}
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-teal-600 px-6 py-3 font-semibold text-white shadow-lg shadow-teal-600/25 transition hover:bg-teal-700 active:scale-[0.98]"
+        >
+          <FiGrid />
+          Accéder au Dashboard
+        </button>
       </main>
     </div>
   );
