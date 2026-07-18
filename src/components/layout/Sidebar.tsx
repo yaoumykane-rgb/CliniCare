@@ -35,7 +35,6 @@ const navItems: NavItem[] = [
     to: "/appointments",
     icon: FiCalendar,
     roles: ["administrateur", "docteur", "patient"],
-    disabled: true,
   },
   {
     label: "Profil",
