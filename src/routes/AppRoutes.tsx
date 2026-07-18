@@ -10,40 +10,13 @@ import {
 import type { NavItem } from "../../types/dashboard";
 import type { Role } from "../../types/roles";
 
-const navItems: NavItem[] = [
-  {
-    label: "Accueil",
-    to: "/home",
-    icon: FiHome,
-    roles: ["administrateur", "docteur", "patient"],
-  },
-  {
-    label: "Dashboard",
-    to: "/dashboard",
-    icon: FiGrid,
-    roles: ["administrateur", "docteur", "patient"],
-  },
-  {
-    label: "Patients",
-    to: "/patients",
-    icon: FiUsers,
-    roles: ["administrateur", "docteur"],
-  },
-  {
-    label: "Rendez-vous",
-    to: "/appointments",
-    icon: FiCalendar,
-    roles: ["administrateur", "docteur", "patient"],
-    disabled: true,
-  },
-  {
-    label: "Profil",
-    to: "/profile",
-    icon: FiUser,
-    roles: ["administrateur", "docteur", "patient"],
-    disabled: true,
-  },
-];
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
+import Patients from "../pages/Patients";
+import Appointments from "../pages/Appointments";
+import Profile from "../pages/Profile";
 
 interface SidebarProps {
   role: Role;
@@ -78,40 +51,35 @@ export default function Sidebar({ role, open, onClose }: SidebarProps) {
           </div>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-4">
-          {items.map((item) =>
-            item.disabled ? (
-              <span
-                key={item.to}
-                className="flex cursor-not-allowed items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400"
-                title="Bientôt disponible"
-              >
-                <item.icon className="h-5 w-5" />
-                {item.label}
-                <span className="ml-auto rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase text-slate-400">
-                  Bientôt
-                </span>
-              </span>
-            ) : (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={onClose}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
-                    isActive
-                      ? "bg-teal-50 text-teal-700"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
-                  }`
-                }
-              >
-                <item.icon className="h-5 w-5" />
-                {item.label}
-              </NavLink>
-            ),
-          )}
-        </nav>
-      </aside>
-    </>
+        <Route
+          path="/patients"
+          element={
+            <ProtectedRoute>
+              <Patients />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/appointments"
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
