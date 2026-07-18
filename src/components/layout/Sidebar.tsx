@@ -28,7 +28,6 @@ const navItems: NavItem[] = [
     to: "/patients",
     icon: FiUsers,
     roles: ["administrateur", "docteur"],
-    disabled: true,
   },
   {
     label: "Rendez-vous",
