@@ -7,6 +7,9 @@ import Dashboard from "../pages/Dashboard";
 
 import Appointments from "../pages/Appointments";
 
+import Patients from "../pages/Patients";
+import Profile from "../pages/Profile";
+
 
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -41,6 +44,24 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <Appointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/patients"
+          element={
+            <ProtectedRoute>
+              <Patients />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />

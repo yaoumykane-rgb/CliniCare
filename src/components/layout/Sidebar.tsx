@@ -40,7 +40,6 @@ const navItems: NavItem[] = [
     to: "/profile",
     icon: FiUser,
     roles: ["administrateur", "docteur", "patient"],
-    disabled: true,
   },
 ];
 
